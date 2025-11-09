@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ouex pipefail
+set -euxo pipefail
 
 ### Install packages
 
@@ -30,9 +30,9 @@ dnf5 install -y \
 	qemu-kvm \
 	virt-manager \
 	xorg-x11-drv-nvidia-cuda \
-	xorg-x11-drv-nvidia-cuda-libs
+	xorg-x11-drv-nvidia-cuda-libs \
 	powertop \
-	tuned-utils\
+	tuned-utils
 
 # LenovoLegionLinux
 #dnf5 -y copr enable mrduarte/LenovoLegionLinux
