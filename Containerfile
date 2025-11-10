@@ -59,7 +59,6 @@ RUN rpm-ostree install \
 	spice-server \
 	spice-gtk \
 	virt-viewer \
-	texlive-scheme-full \
 	qemu-kvm \
 	virt-manager
 
