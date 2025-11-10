@@ -23,7 +23,7 @@ dnf5 install -y tmux
 dnf5 -y copr enable ublue-os/staging
 dnf5 -y copr enable sunwire/envycontrol
 
-dnf5 -y install lm-sensors python-envycontrol
+dnf5 -y install python-envycontrol
 
 dnf5 -y copr disable ublue-os/staging
 dnf5 -y copr disable sunwire/envycontrol

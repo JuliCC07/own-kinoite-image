@@ -35,6 +35,7 @@ RUN rpm-ostree install \
     vulkan-loader \
     vulkan-loader.i686 \
     powertop \
+    lm_sensors \
     tuned-utils \
     tlp \
     kernel-tools \
