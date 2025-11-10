@@ -20,6 +20,7 @@ dnf5 install -y tmux
 # dnf5 -y copr disable ublue-os/staging
 
 # Hardware-related Drivers
+dnf5 -y copr enable ublue-os/staging
 dnf5 install -y \
 	acpid \
 	akmod-nvidia \
@@ -33,6 +34,7 @@ dnf5 install -y \
 	xorg-x11-drv-nvidia-cuda-libs \
 	powertop \
 	tuned-utils
+dnf5 -y copr disable ublue-os/staging
 
 # LenovoLegionLinux
 #dnf5 -y copr enable mrduarte/LenovoLegionLinux

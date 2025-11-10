@@ -25,9 +25,42 @@ FROM ghcr.io/ublue-os/kinoite-main:latest
 
 # RUN rm /opt && mkdir /opt
 
+# --- Metadatos ---
+LABEL org.opencontainers.image.title="Legion-Kinoite-RTX-4070"
+LABEL org.opencontainers.image.description="Imagen personalizada de Fedora Kinoite para Lenovo Legion 5 Pro Gen 8 (RTX 4070 / Ryzen 9 7945HX / 240Hz)"
+LABEL org.opencontainers.image.vendor="JuliCC07/own-kinoite-image"
+
+
 ### MODIFICATIONS
 ## make modifications desired in your image and install packages by modifying the build.sh script
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
+
+RUN rpm-ostree install \
+    acpid \
+    akmod-nvidia \
+    xorg-x11-drv-nvidia-cuda \
+    xorg-x11-drv-nvidia-libs \
+    xorg-x11-drv-nvidia-libs.i686 \
+    vulkan-loader \
+    vulkan-loader.i686 \
+    libva-nvidia-driver \
+    libvirt-daemon-config-network \
+    libvirt-daemon-kvm \
+    lm-sensors \
+    python-envycontrol \
+    qemu-kvm \
+    virt-manager \
+    powertop \
+    tuned-utils \
+    kernel-tools \
+    mesa-vulkan-drivers \
+    mesa-vulkan-drivers.i686 \
+    amd-gpu-firmware \
+    kitty
+
+RUN rpm-ostree override remove \
+	firefox \
+	firefox-langpacks
 
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
@@ -38,3 +71,6 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
 ### LINTING
 ## Verify final image and contents are correct.
 RUN bootc container lint
+
+RUN rpm-ostree cleanup -m && \
+    rm -rf /var/cache/*
