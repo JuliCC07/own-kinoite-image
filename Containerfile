@@ -34,7 +34,6 @@ RUN rpm-ostree install \
     acpid \
     vulkan-loader \
     vulkan-loader.i686 \
-    lm-sensors \
     powertop \
     tuned-utils \
     tlp \
