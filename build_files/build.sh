@@ -19,23 +19,6 @@ dnf5 install -y tmux
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
 
-# Hardware-related Drivers
-dnf5 -y copr enable ublue-os/staging
-dnf5 install -y \
-	acpid \
-	akmod-nvidia \
-	libvirt-daemon-config-network \
-	libvirt-daemon-kvm \
-	lm-sensors \
-	python-envycontrol \
-	qemu-kvm \
-	virt-manager \
-	xorg-x11-drv-nvidia-cuda \
-	xorg-x11-drv-nvidia-cuda-libs \
-	powertop \
-	tuned-utils
-dnf5 -y copr disable ublue-os/staging
-
 # LenovoLegionLinux
 #dnf5 -y copr enable mrduarte/LenovoLegionLinux
 #dnf5 -y install dkms-LenovoLegionLinux

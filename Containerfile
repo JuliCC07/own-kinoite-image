@@ -3,7 +3,7 @@ FROM scratch AS ctx
 COPY build_files /
 
 # Base Image
-FROM ghcr.io/ublue-os/kinoite-main:latest
+FROM ghcr.io/ublue-os/kinoite-nvidia:latest
 
 ## Other possible base images include:
 # FROM ghcr.io/ublue-os/bazzite:latest
@@ -25,38 +25,37 @@ FROM ghcr.io/ublue-os/kinoite-main:latest
 
 # RUN rm /opt && mkdir /opt
 
-# --- Metadatos ---
-LABEL org.opencontainers.image.title="Legion-Kinoite-RTX-4070"
-LABEL org.opencontainers.image.description="Imagen personalizada de Fedora Kinoite para Lenovo Legion 5 Pro Gen 8 (RTX 4070 / Ryzen 9 7945HX / 240Hz)"
-LABEL org.opencontainers.image.vendor="JuliCC07/own-kinoite-image"
-
-
 ### MODIFICATIONS
 ## make modifications desired in your image and install packages by modifying the build.sh script
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
 
+## Drivers y utilidades hardware
 RUN rpm-ostree install \
     acpid \
-    akmod-nvidia \
-    xorg-x11-drv-nvidia-cuda \
-    xorg-x11-drv-nvidia-libs \
-    xorg-x11-drv-nvidia-libs.i686 \
     vulkan-loader \
     vulkan-loader.i686 \
-    libva-nvidia-driver \
-    libvirt-daemon-config-network \
-    libvirt-daemon-kvm \
     lm-sensors \
     python-envycontrol \
-    qemu-kvm \
-    virt-manager \
     powertop \
     tuned-utils \
+    tlp \
     kernel-tools \
     mesa-vulkan-drivers \
     mesa-vulkan-drivers.i686 \
     amd-gpu-firmware \
-    kitty
+## Virt-manager
+RUN rpm-ostree install libvirt-daemon-driver-network libvirt-daemon-config-network libvirt-daemon-kvm libvirt-daemon-driver-nodedev libvirt-daemon-driver-qemu libvirt-daemon-driver-storage-core qemu-audio-spice qemu-char-spice qemu-device-display-qxl qemu-device-display-virtio-gpu qemu-device-display-virtio-vga qemu-device-usb-redirect qemu-system-x86-core spice-server spice-gtk virt-viewer texlive-scheme-full qemu-kvm virt-manager
+
+## Terminal y herramientas
+
+RUN rpm-ostree install \
+	kitty \
+	neovim \
+	fastfetch \
+	gh \
+	qemu \
+	git-lfs \
+	pip \
 
 RUN rpm-ostree override remove \
 	firefox \
@@ -71,6 +70,10 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
 ### LINTING
 ## Verify final image and contents are correct.
 RUN bootc container lint
+
+## Habilitar y deshabilitar servicios
+systemctl disable tlp.service --now
+systemctl enable --now tuned.service
 
 RUN rpm-ostree cleanup -m && \
     rm -rf /var/cache/*
