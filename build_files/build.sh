@@ -10,6 +10,7 @@ set -euxo pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
+
 dnf5 install -y tmux 
 
 # Use a COPR Example:
@@ -18,6 +19,14 @@ dnf5 install -y tmux
 # dnf5 -y install package
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
+
+dnf5 -y copr enable ublue-os/staging
+dnf5 -y copr enable sunwire/envycontrol
+
+dnf5 -y install lm-sensors python-envycontrol
+
+dnf5 -y copr disable ublue-os/staging
+dnf5 -y copr disable sunwire/envycontrol
 
 # LenovoLegionLinux
 #dnf5 -y copr enable mrduarte/LenovoLegionLinux
