@@ -35,7 +35,6 @@ RUN rpm-ostree install \
     vulkan-loader \
     vulkan-loader.i686 \
     lm-sensors \
-    python-envycontrol \
     powertop \
     tuned-utils \
     tlp \
