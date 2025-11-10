@@ -73,9 +73,14 @@ RUN rpm-ostree install \
 	git-lfs \
 	pip
 
+## Eliminar de KDE
 RUN rpm-ostree override remove \
 	firefox \
-	firefox-langpacks
+	firefox-langpacks \
+	konsole \
+	khelpcenter \
+	kinfocenter \
+	plasma-welcome
 
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
