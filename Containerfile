@@ -88,8 +88,8 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
 RUN bootc container lint
 
 ## Habilitar y deshabilitar servicios
-systemctl disable tlp.service --now
-systemctl enable --now tuned.service
+RUN systemctl disable tlp.service --now
+RUN systemctl enable --now tuned.service
 
 RUN rpm-ostree cleanup -m && \
     rm -rf /var/cache/*
