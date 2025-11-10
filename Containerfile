@@ -42,9 +42,28 @@ RUN rpm-ostree install \
     kernel-tools \
     mesa-vulkan-drivers \
     mesa-vulkan-drivers.i686 \
-    amd-gpu-firmware \
+    amd-gpu-firmware
 ## Virt-manager
-RUN rpm-ostree install libvirt-daemon-driver-network libvirt-daemon-config-network libvirt-daemon-kvm libvirt-daemon-driver-nodedev libvirt-daemon-driver-qemu libvirt-daemon-driver-storage-core qemu-audio-spice qemu-char-spice qemu-device-display-qxl qemu-device-display-virtio-gpu qemu-device-display-virtio-vga qemu-device-usb-redirect qemu-system-x86-core spice-server spice-gtk virt-viewer texlive-scheme-full qemu-kvm virt-manager
+RUN rpm-ostree install \ 
+	libvirt-daemon-driver-network \
+	libvirt-daemon-config-network \
+	libvirt-daemon-kvm \
+	libvirt-daemon-driver-nodedev \
+	libvirt-daemon-driver-qemu \
+	libvirt-daemon-driver-storage-core \
+	qemu-audio-spice \
+	qemu-char-spice \
+	qemu-device-display-qxl \
+	qemu-device-display-virtio-gpu \
+	qemu-device-display-virtio-vga \
+	qemu-device-usb-redirect \
+	qemu-system-x86-core \
+	spice-server \
+	spice-gtk \
+	virt-viewer \
+	texlive-scheme-full \
+	qemu-kvm \
+	virt-manager
 
 ## Terminal y herramientas
 
@@ -55,7 +74,7 @@ RUN rpm-ostree install \
 	gh \
 	qemu \
 	git-lfs \
-	pip \
+	pip
 
 RUN rpm-ostree override remove \
 	firefox \
