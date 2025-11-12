@@ -29,9 +29,9 @@ dnf5 -y copr disable ublue-os/staging
 dnf5 -y copr disable sunwire/envycontrol
 
 # LenovoLegionLinux
-dnf5 -y copr enable mrduarte/LenovoLegionLinux
-dnf5 -y install dkms-LenovoLegionLinux
-dnf5 -y copr disable mrduarte/LenovoLegionLinux
+# dnf5 -y copr enable mrduarte/LenovoLegionLinux
+# dnf5 -y install dkms-LenovoLegionLinux
+# dnf5 -y copr disable mrduarte/LenovoLegionLinux
 
 #### Example for enabling a System Unit File
 
