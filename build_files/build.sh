@@ -32,9 +32,6 @@ dnf5 -y copr disable sunwire/envycontrol
 # dnf5 -y copr enable mrduarte/LenovoLegionLinux
 # dnf5 -y install python-LenovoLegionLinux
 # dnf5 -y copr disable mrduarte/LenovoLegionLinux
-git clone https://github.com/johnfanv2/LenovoLegionLinux.git
-cd LenovoLegionLinux/kernel_module
-make install
 
 #### Example for enabling a System Unit File
 
